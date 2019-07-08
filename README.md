@@ -1,2 +1,10 @@
-# Auction_puppeteer
-puppeteer로 My auction 크롤링하기
+# Aution with puppeteer
+
+## Install
+
+```
+> git clone https://github.com/jung-han/Auction_puppeteer.git
+> cd Auction_puppeteer
+> npm i 
+> npm start
+```
