@@ -14,6 +14,13 @@ Link: ${link}
   console.log('\n');
 }
 
+function delay( timeout ) {
+  return new Promise(( resolve ) => {
+    setTimeout( resolve, timeout );
+  });
+
+}
+
 async function login(page, id, password) {
   await page.type( "#user_id", id );
   await page.type( "#user_pw", password, {delay: 100});
@@ -52,6 +59,9 @@ function crawler(id, password, query) {
       await page.waitFor('.post_info .fr a');
       const link = await page.$eval('.post_info .fr a', (el) => el.href);
 
+      if(!title.includes('Gram')) {
+        
+
       await page.waitFor('.view_cmt .comment_area');
       const comments = await page.$$('.view_cmt .comment_area');
       const commentsLastIdx = comments.length - 1;
@@ -67,7 +77,6 @@ function crawler(id, password, query) {
         const price = await comment.$eval('.txt', (el) => el.innerText);
         commentList.push(`${name}: ${price}`);
       }
-
 
       if(query.length > 0) {
         if(title.includes(query)) {
@@ -86,12 +95,15 @@ function crawler(id, password, query) {
           commentList
         });
       }
+    }
+
 
       // 4. 다음 페이지로 이동
       await page.waitFor('.view_top .fl .btn_next');
       const nextPageBtn = await page.$('.view_top .fl .btn_next');
       if(nextPageBtn) {
         await nextPageBtn.click();
+        await delay(1000);
       }
     }
 
