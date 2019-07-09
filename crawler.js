@@ -88,6 +88,7 @@ function crawler(id, password, query) {
       }
 
       // 4. 다음 페이지로 이동
+      await page.waitFor('.view_top .fl .btn_next');
       const nextPageBtn = await page.$('.view_top .fl .btn_next');
       if(nextPageBtn) {
         await nextPageBtn.click();
