@@ -105,7 +105,7 @@ function crawler(id, password) {
     console.log('----끗----');
   });
 }
-ㄴ
+
 module.exports = {
   crawler
 };
